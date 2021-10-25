@@ -70,7 +70,7 @@ function init() {
   scene.add(axes);//Se añaden los ejes
 
   // crear cubo
-  dim = 18; //Tamaño inicial del lado del cubo
+  dim = 2; //Tamaño inicial del lado del cubo
   Cubo = []; // Definir un array unidimensional para generar los 3 cubos 
   angulo=Math.PI/4;//Angulo de rotacion de los cubos extremos
   diferencia=dim/2;//lado /2
@@ -87,9 +87,9 @@ function init() {
     //Se ubican centrados en el origen
 
     //Trasladamos todos los cubos en la ubicación solicitada
-    Cubo[i].translateX(dim2); // Traladamos  la mitad del cubo en el  eje X
-    Cubo[i].translateY(dim2); // Traladamos  la mitad del cubo en el  eje Y
-    Cubo[i].translateZ(dim2); // Traladamos  la mitad del cubo en el  eje Z
+    Cubo[i].translateX(dim/2); // Traladamos  la mitad del cubo en el  eje X
+    Cubo[i].translateY(dim/2); // Traladamos  la mitad del cubo en el  eje Y
+    Cubo[i].translateZ(dim/2); // Traladamos  la mitad del cubo en el  eje Z
   }
 
   Cubo[1].translateY((3 * dim) / 4); //Traladamos el segundo cubo encima del primero
@@ -99,6 +99,9 @@ function init() {
   escalar(2, 1 / 4); //Se reduce el tercer cubo un cuarto de su tamaño original
   
   for (i = 0; i < 3; i++) {//Se rotan los cubos 
+    Cubo[i].translateX(dim2);
+   
+    Cubo[i].translateZ(dim2); 
     if (i % 2 == 0) {//Se rotan unicamente los extremos con el angulo estabecido
       Cubo[i].rotateY(angulo);
     }
@@ -115,7 +118,7 @@ function init() {
   scene.add(light);//Se añade la luz a la escena
 
   // posicion on de la camara
-  camera.position.set(-30, 40, 30);//3, 5, 10
+  camera.position.set(3, 5, 10);//3, 5, 10
   camera.lookAt(scene.position);
 
   // Enviar el resultado representado al elemento de página especificado
