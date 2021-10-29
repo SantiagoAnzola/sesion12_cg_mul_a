@@ -70,12 +70,12 @@ function init() {
   scene.add(axes);//Se añaden los ejes
 
   // crear cubo
-  dim = 18; //Tamaño inicial del lado del cubo
+  dim = 2; //Tamaño inicial del lado del cubo
   Cubo = []; // Definir un array unidimensional para generar los 3 cubos 
-  angulo=Math.PI/4;//Angulo de rotacion de los cubos extremos
+  angulo=7*Math.PI/36;//Angulo de rotacion de los cubos extremos (35°)
   diferencia=dim/2;//lado /2
   diagonal=Math.sqrt(Math.pow(diferencia,2)+Math.pow(diferencia,2));//Se calcula diagonal
-  dim2=diagonal-diferencia; //Nueva distancia 
+  dim2=Math.cos(Math.PI/4-angulo)*diagonal; //Nueva distancia 
   for (i = 0; i < 3; i++) {
     //Generamos 3 cubos, donde los dos cubos extremos tienen un mismo color
     //y el de la mitad otro. Para diferenciar
@@ -87,9 +87,9 @@ function init() {
     //Se ubican centrados en el origen
 
     //Trasladamos todos los cubos en la ubicación solicitada
-    Cubo[i].translateX(dim2); // Traladamos  la mitad del cubo en el  eje X
-    Cubo[i].translateY(dim2); // Traladamos  la mitad del cubo en el  eje Y
-    Cubo[i].translateZ(dim2); // Traladamos  la mitad del cubo en el  eje Z
+    Cubo[i].translateX(dim2); // Traladamos el cubo en el  eje X
+    Cubo[i].translateY(diferencia); // Traladamos  el cubo en el  eje Y
+    Cubo[i].translateZ(dim2); // Traladamos  el cubo en el  eje Z
   }
 
   Cubo[1].translateY((3 * dim) / 4); //Traladamos el segundo cubo encima del primero
@@ -97,7 +97,7 @@ function init() {
 
   escalar(1, 1 / 2); //Se reduce el segundo cubo a la mitad de su tamaño original
   escalar(2, 1 / 4); //Se reduce el tercer cubo un cuarto de su tamaño original
-  
+    
   for (i = 0; i < 3; i++) {//Se rotan los cubos 
     if (i % 2 == 0) {//Se rotan unicamente los extremos con el angulo estabecido
       Cubo[i].rotateY(angulo);
@@ -111,11 +111,11 @@ function init() {
   //Se genera la luz 
   light = new THREE.PointLight(0xffff00);
 
-  light.position.set(-10, 5, 10); //  Localización de la luz
+  light.position.set(-10, 5, -10); //  Localización de la luz
   scene.add(light);//Se añade la luz a la escena
 
   // posicion on de la camara
-  camera.position.set(-30, 40, 30);//3, 5, 10
+  camera.position.set(3, 10, -10);//3, 5, 10
   camera.lookAt(scene.position);
 
   // Enviar el resultado representado al elemento de página especificado
